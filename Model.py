@@ -8,10 +8,8 @@ class CreateProduct(BaseModel):
 class CreateCategories(BaseModel):
     C_Name:str=Field(...)
 
-
 class CreateTrade(BaseModel):
     P_ID:int=Field(...)
-    U_name:str=Field(...)
 
 class UpdateTrade(BaseModel):
     P_status:bool
