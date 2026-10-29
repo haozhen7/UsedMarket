@@ -1,8 +1,11 @@
 # 만든 테이블들 모음
 from sqlalchemy.orm import DeclarativeBase
-from sqlalchemy import Column, Integer, String 
+from sqlalchemy import Column, Integer, String ,Boolean,ForeignKey
 from Database import engine
-Base=DeclarativeBase()
+
+
+class Base(DeclarativeBase):
+    pass
 
 # 상품등록 / 검색 > products 
 # - ID (PK)
@@ -28,4 +31,13 @@ class Categories(Base):
     P_ID=Column(Integer,nullable=False)
     C_Name=Column(String(50),nullable=False)
 
-Base.metadata.create_all(bind=engine)
+
+class Trade_Requests(Base):
+    __tablename__='trade_requests'
+    ID=Column(Integer,primary_key=True)
+    P_ID=Column(Integer,ForeignKey('Products.ID'),nullable=False)
+    # P_name=Column(String(50),nullable=False) #상품이름
+    U_name=Column(String(50),nullable=False) #구매자
+    P_status=Column(Boolean,nullable= False, default= False)
+
+# Base.metadata.create_all(bind=engine) # 이거 그냥 메인으로 이동

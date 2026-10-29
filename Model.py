@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field,ConfigDict
 
 class CreateProduct(BaseModel):
     P_name:str=Field(...,min_length=1)
@@ -8,25 +8,20 @@ class CreateProduct(BaseModel):
 class CreateCategories(BaseModel):
     C_Name:str=Field(...)
 
-# 상품등록 / 검색 > products 
-# - P_name
-# - Price
-# - UserName (UNIQUE)
 
-# 카테고리 > Categories
-# - P_ID
-# - C_Name
+class CreateTrade(BaseModel):
+    P_ID:int=Field(...)
+    U_name:str=Field(...)
 
+class UpdateTrade(BaseModel):
+    P_status:bool
 
-
-
-# #pydantic 모델
-# class UserCreate(BaseModel):
-#     username:str=Field(...,min_length=2, max_length=20)
-#     password:str=Field(...,min_length=4)
-#     email:EmailStr
-
-# class BookCreate(BaseModel):
-#     title:str=Field(..., min_length=2,max_length=40)
-#     author:str=Field(..., min_length=2, max_length=40)
-#     page:int=Field(..., ge=1, le=10000)
+class ReadTrade(BaseModel):
+    ID: int          
+    seller: str      
+    P_name: str      
+    buyer: str       
+    P_status: bool   
+    
+    class Config:
+        from_attributes = True
