@@ -4,7 +4,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 
-hojin="mysql+mysqlconnector://root:Hodori1503!@127.0.0.1:3306/hj2"
+# hojin="mysql+mysqlconnector://root:Hodori1503!@127.0.0.1:3306/hj2"
+hojin="mysql+mysqlconnector://root:1234@127.0.0.1:3306/hy"
 #비동기 db연결 생성하는 함수(비동기적으로 db와 연결한다)
 engine=create_engine(hojin)
 

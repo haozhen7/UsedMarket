@@ -2,18 +2,10 @@
 from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy import Column, Integer, String 
 from Database import engine
-Base=DeclarativeBase()
 
-# 상품등록 / 검색 > products 
-# - ID (PK)
-# - P_name
-# - Price
-# - UserName (UNIQUE)
-# - 
-# 카테고리 > Categories
-# - ID
-# - P_ID
-# - C_Name
+
+class Base(DeclarativeBase): 
+    pass
 
 class Product(Base):
     __tablename__='Products'
