@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field,ConfigDict
 
 class CreateProduct(BaseModel):
     P_name:str=Field(...,min_length=1)
@@ -8,7 +8,7 @@ class CreateProduct(BaseModel):
 class CreateCategories(BaseModel):
     C_Name:str=Field(...)
 
-# 댓글
+############################댓글#################################
 class CreateComment(BaseModel):
     P_ID: int = Field(..., description="상품 ID")
     U_Name: str = Field(..., description="작성자 이름")
@@ -24,3 +24,22 @@ class CommentResponse(CreateComment):
 
 class UpdateComment(BaseModel): #댓글 수정
     Comments: str = Field(..., min_length=1, description="수정할 댓글 내용")
+
+
+
+############################거래#################################
+class CreateTrade(BaseModel):
+    P_ID:int=Field(...)
+
+class UpdateTrade(BaseModel):
+    P_status:bool
+
+class ReadTrade(BaseModel):
+    ID: int          
+    seller: str      
+    P_name: str      
+    buyer: str       
+    P_status: bool   
+    
+    class Config:
+        from_attributes = True
