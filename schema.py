@@ -28,4 +28,15 @@ class Categories(Base):
     P_ID=Column(Integer,nullable=False)
     C_Name=Column(String(50),nullable=False)
 
+# 코멘트
+class Comments(Base):
+    __tablename__ = 'Comments'
+    ID = Column(Integer, primary_key=True, index=True)
+    P_ID = Column(Integer, nullable=False)          # 상품 ID (어떤 상품의 댓글인지)
+    U_Name = Column(String(50), nullable=False)     # 댓글 단 사람 이름
+    P_Name = Column(String(50), nullable=False)     # 상품 이름
+    P_UserName = Column(String(50), nullable=False) # 판매자 이름
+    Comments = Column(String(500), nullable=False)  # 댓글 내용
+
+
 Base.metadata.create_all(bind=engine)
