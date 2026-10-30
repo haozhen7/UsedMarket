@@ -2,6 +2,7 @@
 from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy import Column, Integer, String ,Boolean,ForeignKey
 from Database import engine
+from datetime import datetime, timedelta, timezone
 
 class Base(DeclarativeBase): 
     pass
@@ -30,7 +31,6 @@ class Comments(Base):
     Comments = Column(String(500), nullable=False)  # 댓글 내용
 
 
-Base.metadata.create_all(bind=engine)
 
 class Trade_Requests(Base):
     __tablename__='trade_requests'
@@ -40,4 +40,18 @@ class Trade_Requests(Base):
     U_name=Column(String(50),nullable=False) #구매자
     P_status=Column(Boolean,nullable= False, default= False)
 
-# Base.metadata.create_all(bind=engine) # 이거 그냥 메인으로 이동
+
+
+#############################
+
+def utcnow() -> datetime:
+    return datetime.now(timezone.utc).replace(tzinfo=None)
+
+
+class User(Base):
+    """회원 - 컬럼 3개: user_id(PK), user_name(unique), password(해시된 값)"""
+    __tablename__ = "users"
+
+    user_id = Column(String(255), primary_key=True)
+    user_name = Column(String(50), unique=True, nullable=False)
+    password = Column(String(255), nullable=False)  # 원문이 아니라 bcrypt 해시값이 저장됨
